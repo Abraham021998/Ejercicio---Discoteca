@@ -1,0 +1,54 @@
+// Definir la información de los rumberos
+let rumberos = [
+{ cedula: 134, nombre: 'Luis', edad: 23, sexo: 'M' },
+{ cedula: 154, nombre: 'Ana', edad: 22, sexo: 'F' },
+{ cedula: 324, nombre: 'José', edad: 18, sexo: 'M' },
+{ cedula: 286, nombre: 'Carmen', edad: 19, sexo: 'F' }
+];
+
+// Función para calcular el pago de cada rumbero
+function calcularPago(sexo) {
+if (sexo === 'M') {
+return 25;
+} else {
+return 25 * 0.25; // El 25% del costo para los chicos
+}
+}
+
+let totalGanado = 0;
+let contadorRumberasMayores21 = 0;
+let contadorRumberosM = 0;
+let contadorRumberosF = 0;
+
+// Calcular el pago de cada rumbero y realizar otros cálculos
+rumberos.forEach(rumbero => {
+let pago = calcularPago(rumbero.sexo);
+console.log(`Pago que realiza ${rumbero.nombre}: $${pago}`);
+
+totalGanado += pago;
+
+if (rumbero.sexo === 'F' && rumbero.edad > 21) {
+contadorRumberasMayores21++;
+}
+
+if (rumbero.sexo === 'M') {
+contadorRumberosM++;
+} else {
+contadorRumberosF++;
+}
+});
+
+// Calcular el porcentaje de rumberas mayores a 21 años
+let porcentajeRumberasMayores21 = (contadorRumberasMayores21 / contadorRumberosF) * 100;
+
+console.log(`Total Ganado: $${totalGanado}`);
+console.log(`Porcentaje de rumberas mayores a 21 años: ${porcentajeRumberasMayores21}%`);
+
+// Determinar cuál sexo asistió más a la discoteca
+if (contadorRumberosM > contadorRumberosF) {
+console.log('El sexo que asistió más a la discoteca es Masculino.');
+} else if (contadorRumberosF > contadorRumberosM) {
+console.log('El sexo que asistió más a la discoteca es Femenino.');
+} else {
+console.log('Ambos sexos asistieron en igual cantidad a la discoteca.');
+}
